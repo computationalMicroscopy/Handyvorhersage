@@ -128,28 +128,3 @@ if st.sidebar.button("Simulation starten"):
     with col_android:
         st.success(f"🤖 Android: {purchase_counts.get('Android', 0)} Stichproben ({purchase_counts.get('Android', 0)/num_samples:.2%})")
 
-
-   # st.write("### Detaillierte Verteilung nach Alter und Einkommen:")
-    # Count occurrences of each combination in sampleset
-    #distribution = Counter(tuple(item) for item in sampleset)
-
-    # Display the distribution in a more organized way
-   # age_groups = ["2539", "4054", "5567"]
-   # income_groups = ["viel", "wenig"]
-   # purchase_decisions = ["Apple", "Android"]
-
-  #  for age_group in age_groups:
-   #     st.write(f"#### Altersgruppe: {age_group}")
-   #     for income_group in income_groups:
-   #         st.write(f"**Einkommen:** {income_group}")
-   #         col_detail_apple, col_detail_android = st.columns(2)
-   #         for decision in purchase_decisions:
-   #             key = (age_group, income_group, decision)
-   #             count = distribution.get(key, 0)
-  #              probability = count / num_samples
-   #             if decision == "Apple":
-   #                 with col_detail_apple:
-   #                      st.info(f"🍎 {decision}: {count} Stichproben ({probability:.2%})")
-   #             else:
-   #                 with col_detail_android:
-   #                     st.success(f"🤖 {decision}: {count} Stichproben ({probability:.2%})")
