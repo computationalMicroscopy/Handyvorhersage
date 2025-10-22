@@ -112,7 +112,7 @@ alter_probs = {"2539": age_2539, "4054": age_4054, "5567": age_5567}
 einkommen_probs = {"viel": income_viel, "wenig": income_wenig}
 
 st.sidebar.subheader("📊 Simulationseinstellungen")
-num_samples = st.sidebar.number_input("Anzahl der Stichproben", min_value=100, max_value=100000, value=1000, step=100)
+num_samples = st.sidebar.number_input("Anzahl der Stichproben", min_value=1000, max_value=1000000, value=10000, step=100)
 
 # Run simulation and display results
 if st.sidebar.button("Simulation starten"):
