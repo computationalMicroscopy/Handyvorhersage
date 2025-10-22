@@ -8,12 +8,12 @@ alter = {"2539":0.05, "4054":0.7,"5567":0.25} #Eingabe der Wahrscheinlichkeiten 
 einkommen = {"viel":0.7,"wenig":0.3}
 
 kaufentscheidung = {
-    ("2539","viel"):{"Apple":0.85,"Android":0.15}, # Slightly less extreme for high income young
-    ("2539","wenig"):{"Apple":0.3,"Android":0.7}, # More likely to choose Android with low income
-    ("4054","viel"):{"Apple":0.7,"Android":0.3}, # Still leaning Apple with high income, but less so than younger group
-    ("4054","wenig"):{"Apple":0.2,"Android":0.8}, # Strong preference for Android with low income in this age group
-    ("5567","viel"):{"Apple":0.9,"Android":0.1}, # High income older users still strongly prefer Apple
-    ("5567","wenig"):{"Apple":0.1,"Android":0.9} # Very strong preference for Android with low income older users
+    ("2539","viel"):{"Apple":0.85,"Android":0.15}, 
+    ("2539","wenig"):{"Apple":0.3,"Android":0.7}, 
+    ("4054","viel"):{"Apple":0.7,"Android":0.3}, 
+    ("4054","wenig"):{"Apple":0.2,"Android":0.8}, 
+    ("5567","viel"):{"Apple":0.9,"Android":0.1}, 
+    ("5567","wenig"):{"Apple":0.1,"Android":0.9} 
 }
 
 def sampleAlter(alter_probs):
@@ -57,7 +57,7 @@ def forwardsampling(noSamples, alter_probs, einkommen_probs, kaufentscheidung_pr
 
 st.set_page_config(layout="wide", page_title="Bayessches Netzwerk Kaufentscheidung") # Use wide layout and set page title
 
-st.title("📱 Bayessches Netzwerk für Kaufentscheidungen")
+st.title("📱Netzwerk für Kaufentscheidungen")
 
 st.markdown("""
 Diese interaktive App simuliert ein bayessches Netzwerk, um Kaufentscheidungen (Apple oder Android) basierend auf Alter und Einkommen vorherzusagen.
@@ -130,27 +130,27 @@ if st.sidebar.button("Simulation starten"):
         st.success(f"🤖 Android: {purchase_counts.get('Android', 0)} Stichproben ({purchase_counts.get('Android', 0)/num_samples:.2%})")
 
 
-    st.write("### Detaillierte Verteilung nach Alter und Einkommen:")
+   # st.write("### Detaillierte Verteilung nach Alter und Einkommen:")
     # Count occurrences of each combination in sampleset
-    distribution = Counter(tuple(item) for item in sampleset)
+    #distribution = Counter(tuple(item) for item in sampleset)
 
     # Display the distribution in a more organized way
-    age_groups = ["2539", "4054", "5567"]
-    income_groups = ["viel", "wenig"]
-    purchase_decisions = ["Apple", "Android"]
+   # age_groups = ["2539", "4054", "5567"]
+   # income_groups = ["viel", "wenig"]
+   # purchase_decisions = ["Apple", "Android"]
 
-    for age_group in age_groups:
-        st.write(f"#### Altersgruppe: {age_group}")
-        for income_group in income_groups:
-            st.write(f"**Einkommen:** {income_group}")
-            col_detail_apple, col_detail_android = st.columns(2)
-            for decision in purchase_decisions:
-                key = (age_group, income_group, decision)
-                count = distribution.get(key, 0)
-                probability = count / num_samples
-                if decision == "Apple":
-                    with col_detail_apple:
-                         st.info(f"🍎 {decision}: {count} Stichproben ({probability:.2%})")
-                else:
-                    with col_detail_android:
-                        st.success(f"🤖 {decision}: {count} Stichproben ({probability:.2%})")
+  #  for age_group in age_groups:
+   #     st.write(f"#### Altersgruppe: {age_group}")
+   #     for income_group in income_groups:
+   #         st.write(f"**Einkommen:** {income_group}")
+   #         col_detail_apple, col_detail_android = st.columns(2)
+   #         for decision in purchase_decisions:
+   #             key = (age_group, income_group, decision)
+   #             count = distribution.get(key, 0)
+  #              probability = count / num_samples
+   #             if decision == "Apple":
+   #                 with col_detail_apple:
+   #                      st.info(f"🍎 {decision}: {count} Stichproben ({probability:.2%})")
+   #             else:
+   #                 with col_detail_android:
+   #                     st.success(f"🤖 {decision}: {count} Stichproben ({probability:.2%})")
