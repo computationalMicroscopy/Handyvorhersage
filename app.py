@@ -96,27 +96,26 @@ with col4:
 with col5:
     income_wenig = st.slider("Niedriges Einkommen", 0.0, 1.0, 0.3, 0.01, key='income_wenig')
 
-# Ensure income probabilities sum to 1
+# Sicherstellen, dass sich die Wahrscheinlichkeiten zu 1 aufsummieren.
 total_income_prob = income_viel + income_wenig
-if not (0.99 <= total_income_prob <= 1.01): # Allow for small floating point errors
+if not (0.99 <= total_income_prob <= 1.01): # Abfangen von kleinen numerischen Fehlern
     st.sidebar.warning(f"Die Einkommenswahrscheinlichkeiten ergeben zusammen nicht 1.0 (Aktuelle Summe: {total_income_prob:.2f}). Bitte anpassen.")
-    # Normalize probabilities if they don't sum to 1
     if total_income_prob != 0:
         income_viel /= total_income_prob
         income_wenig /= total_income_prob
         st.sidebar.info(f"Wahrscheinlichkeiten normalisiert: Hohes Einkommen={income_viel:.2f}, Niedriges Einkommen={income_wenig:.2f}")
 
 
-# Update the probability dictionaries with user input
+# Übernehmen der Benutzereingabe für die Wahrscheinlichkeiten
 alter_probs = {"2539": age_2539, "4054": age_4054, "5567": age_5567}
 einkommen_probs = {"viel": income_viel, "wenig": income_wenig}
 
 st.sidebar.subheader("📊 Simulationseinstellungen")
 num_samples = st.sidebar.number_input("Anzahl der Stichproben", min_value=1000, max_value=1000000, value=10000, step=100)
 
-# Run simulation and display results
+# Starte Simulation und stelle Ergebnis dar
 if st.sidebar.button("Simulation starten"):
-    st.subheader("✅ Simulationsergebnisse")
+    st.subheader("✅ Simulationsergebnis")
     sampleset = forwardsampling(num_samples, alter_probs, einkommen_probs, kaufentscheidung)
 
     # Count occurrences of purchase decisions
